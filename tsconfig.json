@@ -2,5 +2,6 @@
   "extends": "@hideoo/tsconfig",
   "compilerOptions": {
     "incremental": false
-  }
+  },
+  "include": ["./tests/vitest.d.ts"]
 }

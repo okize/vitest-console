@@ -26,6 +26,7 @@ test('should return a function to restore mocked default console methods', () =>
   for (const method of DEFAULT_CONSOLE_METHODS) {
     const methodMock = vi.mocked(console[method])
 
+    expect('getMockImplementation' in methodMock).toBe(true)
     expect(methodMock.getMockImplementation()).toBeDefined()
     expect(methodMock).toHaveBeenCalledOnce()
   }
@@ -35,8 +36,8 @@ test('should return a function to restore mocked default console methods', () =>
   for (const method of DEFAULT_CONSOLE_METHODS) {
     const methodMock = vi.mocked(console[method])
 
-    expect(methodMock.getMockImplementation()).not.toBeDefined()
-    expect(methodMock).not.toHaveBeenCalled()
+    expect('getMockImplementation' in methodMock).toBe(false)
+    expect('mock' in methodMock).toBe(false)
   }
 })
 
@@ -104,8 +105,8 @@ test('should return a function to restore mocked specified console methods', () 
   for (const method of methods) {
     const methodMock = vi.mocked(console[method])
 
-    expect(methodMock.getMockImplementation()).not.toBeDefined()
-    expect(methodMock).not.toHaveBeenCalled()
+    expect('getMockImplementation' in methodMock).toBe(false)
+    expect('mock' in methodMock).toBe(false)
   }
 })
 

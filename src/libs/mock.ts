@@ -1,4 +1,4 @@
-import { type EnhancedSpy, vi } from 'vitest'
+import { type MockInstance, vi } from 'vitest'
 
 import { type ConsoleMethod, type ConsoleMethods, DEFAULT_CONSOLE_METHODS } from './console'
 import { getResult } from './result'
@@ -60,5 +60,5 @@ export function getConsoleMock(console: Console, method: ConsoleMethod) {
     }
   }
 
-  return { mock: mock as EnhancedSpy }
+  return { mock: mock as unknown as MockInstance }
 }

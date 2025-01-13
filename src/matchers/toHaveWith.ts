@@ -1,8 +1,8 @@
+import type { MatcherState } from '@vitest/expect'
+
 import { type ConsoleMethod } from '../libs/console'
 import { getConsoleMock } from '../libs/mock'
 import { getResultWithArgs } from '../libs/result'
-
-import { type MatcherState } from '.'
 
 export function createToHaveWithMatcher(method: ConsoleMethod) {
   return function (this: MatcherState, received: Console, ...expectedArgs: any[]) {
@@ -16,10 +16,10 @@ export function createToHaveWithMatcher(method: ConsoleMethod) {
 
     return getResultWithArgs(
       utils,
-      receivedMock.mock.calls.some((args) => equals(args, expectedArgs, [utils.iterableEquality])),
+      receivedMock.mock.mock.calls.some((args) => equals(args, expectedArgs, [utils.iterableEquality])),
       `Expected 'console.${method}' to ${isNot ? 'not ' : ''}be called with arguments`,
       expectedArgs,
-      receivedMock.mock.calls
+      receivedMock.mock.mock.calls
     )
   }
 }

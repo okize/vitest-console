@@ -4,5 +4,5 @@ export default defineBuildConfig({
   clean: true,
   declaration: true,
   entries: ['src/index'],
-  externals: ['vitest'],
+  externals: ['vitest', '@vitest/expect'],
 })

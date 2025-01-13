@@ -1,6 +1,6 @@
-import { type MatcherState } from '../matchers'
+import type { MatcherState, SyncExpectationResult } from '@vitest/expect'
 
-export function getResult(pass: boolean, message: string): Result {
+export function getResult(pass: boolean, message: string): SyncExpectationResult {
   return {
     message: () => message,
     pass,
@@ -13,7 +13,7 @@ export function getResultWithArgs(
   message: string,
   expectedArgs: unknown[],
   calls: unknown[][]
-): Result {
+): SyncExpectationResult {
   const diffs = calls.map((call) => utils.diff(expectedArgs, call))
   const isEmptyDiff = diffs.join('').length === 0
 
@@ -37,9 +37,4 @@ function formatArgs(utils: MatcherState['utils'], args: unknown[]) {
     .replace(/ {2}|Array /g, '')
     .replace(/\n/g, ' ')
     .replace(/, ]+/, ' ]')
-}
-
-export interface Result {
-  message: () => string
-  pass: boolean
 }

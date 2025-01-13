@@ -1,8 +1,8 @@
+import type { MatcherState } from '@vitest/expect'
+
 import { type ConsoleMethod } from '../libs/console'
 import { getConsoleMock } from '../libs/mock'
 import { getResultWithArgs } from '../libs/result'
-
-import { type MatcherState } from '.'
 
 export function createToHaveLastWithMatcher(method: ConsoleMethod) {
   return function (this: MatcherState, received: Console, ...expectedArgs: any[]) {
@@ -14,7 +14,7 @@ export function createToHaveLastWithMatcher(method: ConsoleMethod) {
       return receivedMock.error
     }
 
-    const lastCall = receivedMock.mock.calls[receivedMock.mock.calls.length - 1]
+    const lastCall = receivedMock.mock.mock.calls[receivedMock.mock.mock.calls.length - 1]
 
     return getResultWithArgs(
       utils,
