@@ -1,8 +1,8 @@
+import type { MatcherState } from '@vitest/expect'
+
 import { type ConsoleMethod } from '../libs/console'
 import { getConsoleMock } from '../libs/mock'
 import { getResultWithArgs } from '../libs/result'
-
-import { type MatcherState } from '.'
 
 export function createToHaveNthWithMatcher(method: ConsoleMethod) {
   return function (this: MatcherState, received: Console, times: number, ...expectedArgs: any[]) {
@@ -14,7 +14,7 @@ export function createToHaveNthWithMatcher(method: ConsoleMethod) {
       return receivedMock.error
     }
 
-    const nthCall = receivedMock.mock.calls[times - 1]
+    const nthCall = receivedMock.mock.mock.calls[times - 1]
 
     return getResultWithArgs(
       utils,

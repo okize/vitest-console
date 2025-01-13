@@ -299,9 +299,7 @@ export interface Matchers {
   toHaveNthWarnedWith: Matcher<typeof createToHaveNthWithMatcher>
 }
 
-declare global {
-  namespace Vi {
-    interface Assertion extends Matchers {}
-    interface AsymmetricMatchersContaining extends Matchers {}
-  }
+declare module 'vitest' {
+  interface Assertion extends Matchers {}
+  interface AsymmetricMatchersContaining extends Matchers {}
 }
