@@ -55,8 +55,10 @@ import { defineConfig } from 'vitest/config'
 
 export default defineConfig({
   test: {
-    deps: {
-      inline: ['vitest-console'],
+    server: {
+      deps: {
+        inline: ['vitest-console'],
+      },
     },
     setupFiles: ['tests-setup.ts'],
   },
