@@ -31,7 +31,7 @@ export function mockConsole(
 
   function restoreConsole() {
     for (const method of methods) {
-      vi.mocked(globalThis.console[method]).mockRestore()
+      vi.mocked(globalThis.console[method]).mockReset()
     }
   }
 
